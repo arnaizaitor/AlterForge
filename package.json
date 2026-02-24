@@ -1,0 +1,11 @@
+{
+  "name": "alterforge",
+  "private": true,
+  "scripts": {
+    "tw:build": "tailwindcss -c tailwind.config.js -i ./css/tailwind.css -o ./css/tailwind-output.css --minify",
+    "tw:watch": "tailwindcss -c tailwind.config.js -i ./css/tailwind.css -o ./css/tailwind-output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

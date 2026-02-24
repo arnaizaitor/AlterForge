@@ -7,6 +7,22 @@ This repository is for the purpose of making the application usable on your loca
 - Run server.exe (or mac-server for MacOS, linux-server for linux)
 - You're good to go! You could also set up Card Conjurer in a more traditional method using WAMP, Docker, XAMPP, etc.
 
+## Frontend (TailwindCSS layer)
+- Install Node dependencies:
+```bash
+npm install
+```
+- Build the Tailwind layer once:
+```bash
+npm run tw:build
+```
+- During UI work, keep Tailwind in watch mode:
+```bash
+npm run tw:watch
+```
+
+The compiled file is `css/tailwind-output.css`, loaded after `css/style-9.css` so visual updates can be introduced incrementally without changing existing JS hooks.
+
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg?longCache=true&style=popout)](https://www.paypal.me/kyleburtondonate
 ) ← Help out Card Conjurer's original creator, Kyle. We love you buddy.

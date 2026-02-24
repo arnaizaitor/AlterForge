@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  body {
+    @apply bg-slate-900 text-slate-100;
+  }
+
+  .background {
+    @apply bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800;
+  }
+
+  header.readable-background {
+    @apply border-b border-slate-700/60 bg-slate-900/70 py-5 backdrop-blur-md;
+  }
+
+  .title.center {
+    @apply text-4xl font-semibold tracking-[0.22em] text-slate-100;
+  }
+
+  .hamburger {
+    @apply bg-slate-800/90 shadow-soft;
+  }
+
+  .menu > div.main-menu {
+    @apply rounded-2xl border border-slate-700/50 bg-slate-900/80 p-8 shadow-panel backdrop-blur-md;
+  }
+
+  .notification {
+    @apply rounded-xl border border-slate-700/60 bg-slate-900/95 shadow-soft;
+  }
+
+  .main-content.creator-shell {
+    @apply mx-auto w-full max-w-[1700px] px-4 pb-10 pt-5 lg:px-8;
+  }
+
+  .creator-shell .creator-grid {
+    @apply grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,760px)] xl:items-start;
+  }
+
+  .creator-shell .creator-menu {
+    @apply order-1 w-full;
+  }
+
+  .creator-shell .creator-canvas {
+    @apply order-2 w-full max-w-[760px] rounded-[28px] border border-slate-700/60 bg-slate-950/60 shadow-panel xl:order-2 xl:sticky xl:top-6;
+  }
+
+  .creator-shell .creator-menu-tabs {
+    @apply grid grid-cols-2 gap-2 rounded-2xl border border-slate-700/50 bg-slate-900/75 p-2 md:grid-cols-4 xl:sticky xl:top-4 xl:z-10;
+  }
+
+  .creator-shell .creator-menu-tabs > .selectable {
+    @apply m-0 rounded-xl border border-slate-700/50 bg-slate-800/80 px-3 py-2 text-sm font-semibold tracking-wide text-slate-200 transition;
+  }
+
+  .creator-shell .creator-menu-tabs > .selectable:hover {
+    @apply border-slate-500 bg-slate-700/90 shadow-soft;
+  }
+
+  .creator-shell .creator-menu-tabs > .selectable.selected {
+    @apply border-blue-400 bg-blue-600/25 text-blue-100 ring-1 ring-blue-300/40;
+  }
+
+  .creator-shell h3 {
+    @apply text-lg;
+  }
+
+  .creator-shell h5 {
+    @apply text-sm leading-relaxed;
+  }
+
+  .creator-shell p {
+    @apply text-sm leading-relaxed text-slate-300;
+  }
+
+  .creator-shell #creator-menu-sections > div > .readable-background,
+  .creator-shell > .readable-background {
+    @apply rounded-2xl border border-slate-700/50 bg-slate-900/75 shadow-soft backdrop-blur-sm;
+  }
+
+  .creator-shell .input-grid {
+    @apply grid gap-2 md:grid-cols-2 xl:grid-cols-2;
+  }
+
+  .creator-shell .input-description {
+    @apply text-sm not-italic text-slate-300;
+  }
+
+  .creator-shell .input {
+    @apply rounded-lg border border-slate-600/80 bg-slate-800/80 px-3 py-2 text-base text-slate-100 shadow-none transition;
+  }
+
+  .creator-shell .input:hover {
+    @apply border-slate-400/80 bg-slate-700/80;
+  }
+
+  .creator-shell .input:focus {
+    @apply outline-none ring-2 ring-blue-300/45;
+  }
+
+  .creator-shell textarea.input {
+    @apply min-h-[12rem] max-h-[28rem] leading-6;
+  }
+
+  .creator-shell .checkbox-container {
+    @apply rounded-lg border border-slate-600/70 bg-slate-800/70 py-2 pr-3;
+  }
+
+  .creator-shell .checkmark {
+    @apply left-2 top-1.5 border border-slate-500 bg-slate-700;
+  }
+
+  .creator-shell .checkbox-container input:checked ~ .checkmark {
+    @apply border-blue-300 bg-blue-300;
+  }
+
+  .creator-shell .checkbox-container .checkmark:after {
+    border-color: #0f172a;
+  }
+
+  .creator-shell .drop-area {
+    @apply rounded-xl border-slate-500/60 bg-slate-900/50;
+  }
+
+  .creator-shell .drop-area.hover {
+    @apply border-blue-300/80 bg-blue-500/10;
+  }
+
+  .creator-shell .frame-picker,
+  .creator-shell .mask-picker {
+    @apply rounded-xl border border-slate-700/60 bg-slate-950/35 p-2;
+  }
+
+  .creator-shell .frame-option,
+  .creator-shell .mask-option,
+  .creator-shell .frame-element,
+  .creator-shell .text-option {
+    @apply rounded-lg border border-transparent bg-slate-800/90;
+  }
+
+  .creator-shell .frame-option:hover,
+  .creator-shell .mask-option:hover,
+  .creator-shell .frame-element:hover,
+  .creator-shell .text-option:hover {
+    @apply border-slate-500 bg-slate-700/90 shadow-soft;
+  }
+
+  .creator-shell .frame-option.selected,
+  .creator-shell .mask-option.selected,
+  .creator-shell .dragging,
+  .creator-shell .text-option.selected {
+    @apply border-blue-300 bg-blue-600/25;
+  }
+
+  .creator-shell .download {
+    @apply rounded-xl border border-slate-600/60 bg-slate-800/80 px-4 py-3 text-slate-100 transition;
+  }
+
+  .creator-shell .download:hover {
+    @apply border-blue-300/70 bg-blue-600/20 no-underline;
+  }
+
+  .frame-element-editor,
+  .textbox-editor {
+    @apply rounded-2xl border border-slate-600/60 bg-slate-900/95 shadow-panel;
+  }
+}
