@@ -4691,6 +4691,71 @@ function downloadCard(alt = false, jpeg = false) {
 		}
 	}
 }
+function downloadCardExtended() {
+	if (card.infoArtist.replace(/ /g, '') == '' && !card.artSource.includes('/img/blank.png') && !card.artZoom == 0) {
+		notify('You must credit an artist before downloading!', 5);
+		return;
+	}
+
+	const TARGET_W = 2192;
+	const TARGET_H = 2992;
+	const ORIG_W = cardCanvas.width;   // 2010
+	const ORIG_H = cardCanvas.height;  // 2814
+	const oX = Math.floor((TARGET_W - ORIG_W) / 2); // 91
+	const oY = Math.floor((TARGET_H - ORIG_H) / 2); // 89
+
+	const ext = document.createElement('canvas');
+	ext.width = TARGET_W;
+	ext.height = TARGET_H;
+	const ctx = ext.getContext('2d');
+
+	// ── Left border: mirror left oX columns of card horizontally ──
+	ctx.save();
+	ctx.translate(oX, oY);
+	ctx.scale(-1, 1);
+	ctx.drawImage(cardCanvas, 0, 0, oX, ORIG_H, 0, 0, oX, ORIG_H);
+	ctx.restore();
+
+	// ── Right border: mirror right oX columns of card horizontally ──
+	ctx.save();
+	ctx.translate(TARGET_W, oY);
+	ctx.scale(-1, 1);
+	ctx.drawImage(cardCanvas, ORIG_W - oX, 0, oX, ORIG_H, 0, 0, oX, ORIG_H);
+	ctx.restore();
+
+	// ── Top border: mirror top oY rows of card vertically ──
+	ctx.save();
+	ctx.translate(oX, oY);
+	ctx.scale(1, -1);
+	ctx.drawImage(cardCanvas, 0, 0, ORIG_W, oY, 0, 0, ORIG_W, oY);
+	ctx.restore();
+
+	// ── Bottom border: mirror bottom oY rows of card vertically ──
+	ctx.save();
+	ctx.translate(oX, TARGET_H);
+	ctx.scale(1, -1);
+	ctx.drawImage(cardCanvas, 0, ORIG_H - oY, ORIG_W, oY, 0, 0, ORIG_W, oY);
+	ctx.restore();
+
+	// ── Corners: stretch the corner pixel of the card ──
+	ctx.drawImage(cardCanvas, 0,          0,          1, 1, 0,          0,          oX, oY); // top-left
+	ctx.drawImage(cardCanvas, ORIG_W - 1, 0,          1, 1, oX + ORIG_W, 0,         oX, oY); // top-right
+	ctx.drawImage(cardCanvas, 0,          ORIG_H - 1, 1, 1, 0,          oY + ORIG_H, oX, oY); // bottom-left
+	ctx.drawImage(cardCanvas, ORIG_W - 1, ORIG_H - 1, 1, 1, oX + ORIG_W, oY + ORIG_H, oX, oY); // bottom-right
+
+	// ── Draw original card centered on top ──
+	ctx.drawImage(cardCanvas, oX, oY, ORIG_W, ORIG_H);
+
+	// ── Trigger download ──
+	const imageName = getCardName() + '-bleed.png';
+	const downloadElement = document.createElement('a');
+	downloadElement.download = imageName;
+	downloadElement.href = ext.toDataURL('image/png');
+	document.body.appendChild(downloadElement);
+	downloadElement.click();
+	downloadElement.remove();
+}
+
 //IMPORT/SAVE TAB
 function importCard(cardObject) {
 	scryfallCard = cardObject;
